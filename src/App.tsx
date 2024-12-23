@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import PrivateRoute from "./components/PrivateRoute";
+import { AuthProvider } from "./components/AuthProvider";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<LoginPage />} />
+
+          {/* Private Routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+
+          {/* Catch-all route */}
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
