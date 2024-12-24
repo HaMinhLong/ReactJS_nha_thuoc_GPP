@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LoginApiResponse } from "../../api/auth";
-import { TypeUser } from "../../api/user";
 
 const initialState: LoginApiResponse["data"] = {};
 
