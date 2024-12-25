@@ -1,0 +1,39 @@
+.ant-layout-header {
+  background: #1888e8;
+  padding-left: 40px;
+}
+
+.ant-menu-horizontal {
+  background: #1888e8;
+  height: 50px;
+}
+
+.ant-menu-sub {
+  background: #1888e8 !important;
+  color: #fff;
+}
+.ant-menu-item-group-title {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.ant-menu-item-icon.anticon-setting {
+  color: #fff !important;
+}
+.ant-menu-title-content,
+.ant-menu-submenu,
+.ant-menu-item {
+  color: #fff;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+  font-size: 12px;
+}
+.ant-menu-title-content {
+  height: 40px;
+  line-height: 40px;
+}
+.ant-menu-item-selected,
+.ant-menu-submenu-selected {
+  background: #0078b7 !important;
+}

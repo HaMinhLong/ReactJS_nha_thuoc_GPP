@@ -28,6 +28,7 @@ const axiosBaseQuery =
           Authorization: `Bearer ${store?.auth?.accessToken}`,
         };
       };
+
       const result = await axios({
         url: url.startsWith("http") ? url : baseUrl + url,
         method: method ?? "GET",
@@ -47,9 +48,18 @@ const axiosBaseQuery =
           ...headers,
         },
       });
+
       return { data: result.data };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
+
+      // Kiểm tra lỗi 401 (Unauthorized)
+      if (err.response?.status === 401 && localStorage.getItem("accessToken")) {
+        // Chuyển hướng người dùng đến màn hình login
+        window.location.href = "/login"; // Đường dẫn màn login
+        localStorage.removeItem("accessToken");
+      }
+
       return {
         error: {
           status: err.response?.status ?? null,
