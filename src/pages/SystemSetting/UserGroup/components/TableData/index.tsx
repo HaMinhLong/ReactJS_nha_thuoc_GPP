@@ -8,8 +8,10 @@ import {
   Menu,
   Spin,
   Space,
+  Pagination,
 } from "antd";
 import { DownOutlined, PlusOutlined } from "@ant-design/icons";
+import { useUrlSearchParams } from "use-url-search-params";
 
 import {
   GetListUserGroupApiResponse,
@@ -20,15 +22,20 @@ import CreateOrEdit from "../CreateOrEdit";
 import FilterData from "../FilterData";
 
 const { Content } = Layout;
-const TableData = () => {
-  const [getList, { data, isFetching }] = useLazyGetListUserGroupQuery();
 
-  useEffect(() => {
-    getList({});
-  }, []);
+const TableData = () => {
+  const [parameter, setParameter] = useUrlSearchParams({ page: 1, limit: 10 });
+  const [getList, { data, isFetching }] = useLazyGetListUserGroupQuery();
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [editId, setEditId] = useState<number>(0);
+
+  useEffect(() => {
+    getList({
+      page: Number(parameter.page),
+      limit: Number(parameter.limit),
+    });
+  }, []);
 
   const handleCreateNew = () => {
     setIsModalVisible(true);
@@ -49,7 +56,14 @@ const TableData = () => {
     };
   }, []);
 
+  const onPaginationChange = (page: number, pageSize: number) => {
+    setParameter({ ...parameter, page: page, limit: pageSize });
+    getList({ page: page, limit: pageSize });
+  };
+
   const columns = useColumnTable({ getList, setIsModalVisible, setEditId });
+
+  const dataTable = data as GetListUserGroupApiResponse;
 
   return (
     <>
@@ -69,6 +83,7 @@ const TableData = () => {
               allowClear
               style={{ width: "375px" }}
               onSearch={(e) => {
+                setParameter({ ...parameter, keyword: e });
                 getList({ keyword: e });
               }}
             />
@@ -99,11 +114,21 @@ const TableData = () => {
           </Space>
           <Table
             columns={columns}
-            dataSource={(data as GetListUserGroupApiResponse)?.data}
-            pagination={{ pageSize: 10 }}
+            dataSource={dataTable?.data}
             locale={{ emptyText: "Không có dữ liệu" }}
             bordered
+            pagination={false}
           />
+          <div className="flex justify-end mt-3">
+            <Pagination
+              showSizeChanger
+              onChange={onPaginationChange}
+              defaultCurrent={1}
+              total={dataTable?.pagination?.total}
+              size="small"
+              pageSize={Number(parameter.limit || 10)}
+            />
+          </div>
         </Spin>
       </Content>
 

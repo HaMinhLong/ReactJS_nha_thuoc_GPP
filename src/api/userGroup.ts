@@ -84,6 +84,14 @@ export type GetListUserGroupApiResponse = {
   message: string;
   statusCode: number;
   data: TypeUserGroup[];
+  pagination: PaginationType;
+};
+
+export type PaginationType = {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
 };
 
 export type TypeUserGroup = {
@@ -94,6 +102,8 @@ export type TypeUserGroup = {
 
 export type GetListUserGroupApiArg = {
   keyword?: string;
+  page?: number;
+  limit?: number;
 };
 
 export type PostUserGroupApiResponse = {
