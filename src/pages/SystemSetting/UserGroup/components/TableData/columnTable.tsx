@@ -1,10 +1,7 @@
 import React from "react";
 import { Button, Popconfirm } from "antd";
-import {
-  TypeUserGroup,
-  useDeleteUserGroupMutation,
-} from "../../../../../api/userGroup";
-import { useMessage } from "../../../../../context/MessageContext";
+import { TypeUserGroup, useDeleteUserGroupMutation } from "@/api/userGroup";
+import { useMessage } from "@/context/MessageContext";
 
 interface PropsType {
   setEditId: React.Dispatch<React.SetStateAction<number>>;

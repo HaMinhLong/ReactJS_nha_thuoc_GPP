@@ -36,7 +36,7 @@ const HeaderPage = () => {
           authorities: ["user_getList"],
         },
         {
-          label: "Phân quyền",
+          label: <Link to="/system-setting/permission">Phân quyền</Link>,
           key: "permission",
         },
       ],

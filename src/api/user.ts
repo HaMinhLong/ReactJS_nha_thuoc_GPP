@@ -1,6 +1,6 @@
-import { apiWrapper } from "../store/apiWrapper";
+import { apiWrapper } from "@/store/apiWrapper";
+import { ErrorResponse } from "@/type/global";
 import { PaginationType, TypeUserGroup } from "./userGroup";
-import { ErrorResponse } from "../type/global";
 
 const injectedRtkApi = apiWrapper.injectEndpoints({
   endpoints: (build) => ({

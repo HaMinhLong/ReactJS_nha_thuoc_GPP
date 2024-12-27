@@ -6,11 +6,13 @@ import { AuthProvider } from "./components/AuthProvider";
 import { MessageProvider } from "./context/MessageContext";
 import PublicRoute from "./components/PublicRoute";
 
-import HomePage from "./pages/HomePage";
-import UserGroupPage from "./pages/SystemSetting/UserGroup";
+import HomePage from "@/pages/HomePage";
+import UserGroupPage from "@/pages/SystemSetting/UserGroup";
+import UserPage from "@/pages/SystemSetting/User";
+import PermissionPage from "@/pages/SystemSetting/Permission";
+import UpdatePermission from "@/pages/SystemSetting/Permission/components/UpdatePermission";
 
-import LoginPage from "./pages/LoginPage";
-import UserPage from "./pages/SystemSetting/User";
+import LoginPage from "@/pages/LoginPage";
 
 const App = () => {
   return (
@@ -18,27 +20,37 @@ const App = () => {
       <MessageProvider>
         <Router>
           <Routes>
-            {/* Public Routes */}
+            {/* Login Routes */}
             <Route element={<PublicRoute />}>
               <Route path="/login" element={<LoginPage />} />
             </Route>
-
             {/* Private Routes */}
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<HomePage />} />
             </Route>
-
-            {/* Private Routes */}
+            {/* User Group Routes */}
             <Route element={<PrivateRoute />}>
               <Route
                 path="/system-setting/user-group"
                 element={<UserGroupPage />}
               />
             </Route>
-
-            {/* Private Routes */}
+            {/* User Routes */}
             <Route element={<PrivateRoute />}>
               <Route path="/system-setting/user" element={<UserPage />} />
+            </Route>
+            {/* Permission Routes */}
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="/system-setting/permission"
+                element={<PermissionPage />}
+              />
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="/system-setting/permission/:id"
+                element={<UpdatePermission />}
+              />
             </Route>
 
             {/* Catch-all route */}

@@ -1,4 +1,4 @@
-import { apiWrapper } from "../store/apiWrapper";
+import { apiWrapper } from "@/store/apiWrapper";
 import { TypeUser } from "./user";
 
 const injectedRtkApi = apiWrapper.injectEndpoints({
