@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Typography } from "antd";
 
-import PageContainer from "../../../layouts/PageContainer";
+import PageContainer from "@/layouts/PageContainer";
 import TableData from "./components/TableData";
 
 const { Content } = Layout;

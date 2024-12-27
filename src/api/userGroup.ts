@@ -12,6 +12,7 @@ const injectedRtkApi = apiWrapper.injectEndpoints({
         url: "/user-group",
         params: queryArg,
       }),
+      providesTags: ["user-group"],
     }),
     getDetailUserGroup: build.query<
       GetDetailUserGroupApiResponse | ErrorResponse,
@@ -24,13 +25,14 @@ const injectedRtkApi = apiWrapper.injectEndpoints({
     }),
     postUserGroup: build.mutation<
       PostUserGroupApiResponse | ErrorResponse,
-      PostUserGroupApiArg
+      TypeUserGroup
     >({
       query: (data) => ({
         url: "/user-group",
         body: data,
         method: "POST",
       }),
+      invalidatesTags: ["user-group"],
     }),
     putUserGroup: build.mutation<
       PostUserGroupApiResponse | ErrorResponse,
@@ -41,6 +43,7 @@ const injectedRtkApi = apiWrapper.injectEndpoints({
         body: data.body,
         method: "PUT",
       }),
+      invalidatesTags: ["user-group"],
     }),
     deleteUserGroup: build.mutation<
       DeleteUserGroupApiResponse | ErrorResponse,
@@ -50,15 +53,14 @@ const injectedRtkApi = apiWrapper.injectEndpoints({
         url: `/user-group/${queryArg?.id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["user-group"],
     }),
   }),
 });
 
 export type PutUserGroupApiArg = {
   id: number;
-  body: {
-    name: string;
-  };
+  body: TypeUserGroup;
 };
 
 export type GetDetailUserGroupApiArg = {
@@ -81,10 +83,10 @@ export type DeleteUserGroupApiArg = {
 };
 
 export type GetListUserGroupApiResponse = {
-  message: string;
-  statusCode: number;
-  data: TypeUserGroup[];
-  pagination: PaginationType;
+  message?: string;
+  statusCode?: number;
+  data?: TypeUserGroup[];
+  pagination?: PaginationType;
 };
 
 export type PaginationType = {
@@ -97,23 +99,20 @@ export type PaginationType = {
 export type TypeUserGroup = {
   id?: number;
   name?: string;
-  users: TypeUser[];
+  users?: TypeUser[];
 };
 
 export type GetListUserGroupApiArg = {
   keyword?: string;
   page?: number;
   limit?: number;
+  selectFields?: string[];
 };
 
 export type PostUserGroupApiResponse = {
   message: string;
   statusCode: number;
   data: TypeUserGroup;
-};
-
-export type PostUserGroupApiArg = {
-  name: string;
 };
 
 export { injectedRtkApi as UserGroupGroupApi };

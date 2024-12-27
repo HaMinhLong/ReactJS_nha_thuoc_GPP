@@ -5,13 +5,19 @@ import {
   useDeleteUserGroupMutation,
 } from "../../../../../api/userGroup";
 import { useMessage } from "../../../../../context/MessageContext";
+import { TypeUser } from "../../../../../api/user";
 
 interface PropsType {
+  getList: any;
   setEditId: React.Dispatch<React.SetStateAction<number>>;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const useColumnTable = ({ setEditId, setIsModalVisible }: PropsType) => {
+export const useColumnTable = ({
+  getList,
+  setEditId,
+  setIsModalVisible,
+}: PropsType) => {
   const messageApi = useMessage();
   const [deleteUserGroup] = useDeleteUserGroupMutation();
 
@@ -20,13 +26,45 @@ export const useColumnTable = ({ setEditId, setIsModalVisible }: PropsType) => {
       title: "#",
       dataIndex: "id",
       key: "id",
-      width: "5%",
+      width: 50,
+      fixed: "left",
     },
     {
-      title: "Tên nhóm tài khoản",
+      title: "Tên tài khoản",
       dataIndex: "name",
       key: "name",
-      width: "70%",
+      width: 200,
+      fixed: "left",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      width: 150,
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "phone",
+      key: "phone",
+      width: 150,
+    },
+    {
+      title: "Nhóm tài khoản",
+      dataIndex: "userGroup",
+      key: "userGroup",
+      width: 200,
+      render: (userGroup: TypeUser) => {
+        return <div>{userGroup?.name || ""}</div>;
+      },
+    },
+    {
+      title: "Trạng thái",
+      dataIndex: "status",
+      key: "status",
+      width: 150,
+      render: (status: number) => {
+        return <div>{status === 1 ? "Đang hoạt động" : "Dừng hoạt động"}</div>;
+      },
     },
     {
       title: "Action",
@@ -52,9 +90,10 @@ export const useColumnTable = ({ setEditId, setIsModalVisible }: PropsType) => {
               onConfirm={() => {
                 deleteUserGroup({ id: record?.id || 0 }).then((res: any) => {
                   if (res?.data?.statusCode === 200) {
-                    messageApi.success("Xoá nhóm tài khoản thành công");
+                    messageApi.success("Xoá tài khoản thành công");
+                    getList();
                   } else {
-                    messageApi.error(" Xoá nhóm tài khoản không thành công");
+                    messageApi.error(" Xoá tài khoản không thành công");
                   }
                 });
               }}

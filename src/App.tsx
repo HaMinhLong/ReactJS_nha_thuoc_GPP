@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import UserGroupPage from "./pages/SystemSetting/UserGroup";
 
 import LoginPage from "./pages/LoginPage";
+import UserPage from "./pages/SystemSetting/User";
 
 const App = () => {
   return (
@@ -33,6 +34,11 @@ const App = () => {
                 path="/system-setting/user-group"
                 element={<UserGroupPage />}
               />
+            </Route>
+
+            {/* Private Routes */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/system-setting/user" element={<UserPage />} />
             </Route>
 
             {/* Catch-all route */}

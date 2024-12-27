@@ -73,20 +73,6 @@ export const apiWrapper = createApi({
     baseUrl: process.env.BASE_API_URL || "http://localhost:8080/api/v1",
   }),
 
-  tagTypes: [
-    "group",
-    "store",
-    "brand",
-    "user",
-    "post",
-    "template",
-    "automatic",
-    "area",
-    "suggest",
-    "keyword",
-    "alertSetting",
-    "location",
-    "performance",
-  ],
+  tagTypes: ["user", "user-group"],
   endpoints: () => ({}),
 });

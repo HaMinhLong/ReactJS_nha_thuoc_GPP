@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Layout,
   Input,
@@ -11,31 +11,30 @@ import {
   Pagination,
 } from "antd";
 import { DownOutlined, PlusOutlined } from "@ant-design/icons";
-import { useUrlSearchParams } from "use-url-search-params";
 
 import {
-  GetListUserGroupApiResponse,
-  useLazyGetListUserGroupQuery,
-} from "../../../../../api/userGroup";
+  GetListUserApiResponse,
+  useLazyGetListUserQuery,
+} from "../../../../../api/user";
 import { useColumnTable } from "./columnTable";
 import CreateOrEdit from "../CreateOrEdit";
 import FilterData from "../FilterData";
+import { UserContext } from "../..";
 
 const { Content } = Layout;
 
 const TableData = () => {
-  const [parameter, setParameter] = useUrlSearchParams({ page: 1, limit: 10 });
-  const [getList, { data, isFetching }] = useLazyGetListUserGroupQuery();
+  const { parameter, setParameter } = useContext(UserContext);
+  const [getList, { data, isFetching }] = useLazyGetListUserQuery();
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [editId, setEditId] = useState<number>(0);
 
   useEffect(() => {
     getList({
-      page: Number(parameter.page),
-      limit: Number(parameter.limit),
+      ...parameter,
     });
-  }, []);
+  }, [parameter]);
 
   const handleCreateNew = () => {
     setIsModalVisible(true);
@@ -57,17 +56,20 @@ const TableData = () => {
   }, []);
 
   const onPaginationChange = (page: number, pageSize: number) => {
-    setParameter({ ...parameter, page: page, limit: pageSize });
-    getList({ page: page, limit: pageSize });
+    setParameter?.({ ...parameter, page: page, limit: pageSize });
   };
 
-  const columns = useColumnTable({ setIsModalVisible, setEditId });
+  const columns: any = useColumnTable({
+    getList,
+    setIsModalVisible,
+    setEditId,
+  });
 
-  const dataTable = data as GetListUserGroupApiResponse;
+  const dataTable = data as GetListUserApiResponse;
 
   return (
     <>
-      {/* <FilterData /> */}
+      <FilterData />
 
       <Content style={{ padding: "16px", background: "#fff" }}>
         <Spin spinning={isFetching}>
@@ -83,8 +85,7 @@ const TableData = () => {
               allowClear
               style={{ width: "375px" }}
               onSearch={(e) => {
-                setParameter({ ...parameter, keyword: e });
-                getList({ keyword: e });
+                setParameter?.({ ...parameter, keyword: e });
               }}
             />
             <Space>
@@ -127,7 +128,7 @@ const TableData = () => {
               defaultCurrent={1}
               total={dataTable?.pagination?.total}
               size="small"
-              pageSize={Number(parameter.limit || 10)}
+              pageSize={Number(parameter?.limit || 10)}
             />
           </div>
         </Spin>

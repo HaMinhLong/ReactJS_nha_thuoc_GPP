@@ -3,7 +3,7 @@ import { Button, Form, Input, Modal, Spin } from "antd";
 
 import {
   GetDetailUserGroupApiResponse,
-  PostUserGroupApiArg,
+  TypeUserGroup,
   useLazyGetDetailUserGroupQuery,
   usePostUserGroupMutation,
   usePutUserGroupMutation,
@@ -15,14 +15,12 @@ interface PropsType {
   editId: number;
   isModalVisible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  getList: any;
 }
 
 const CreateOrEdit = ({
   editId,
   isModalVisible,
   setIsModalVisible,
-  getList,
 }: PropsType) => {
   const [form] = Form.useForm();
   const messageApi = useMessage();
@@ -52,7 +50,7 @@ const CreateOrEdit = ({
   };
 
   // Gửi dữ liệu khi nhấn "Lưu"
-  const handleSubmit = (values: PostUserGroupApiArg) => {
+  const handleSubmit = (values: TypeUserGroup) => {
     const dataSubmit = {
       name: values?.name || "",
     };
@@ -64,8 +62,7 @@ const CreateOrEdit = ({
             (res as ErrorResponse).error.data.error.message || ""
           );
         } else {
-          messageApi.success("Tạo nhóm người dùng thành công!");
-          getList();
+          messageApi.success("Tạo nhóm tài khoản thành công!");
           setIsModalVisible(false);
         }
       });
@@ -76,8 +73,7 @@ const CreateOrEdit = ({
             (res as ErrorResponse).error.data.error.message || ""
           );
         } else {
-          messageApi.success("Cập nhật nhóm người dùng thành công!");
-          getList();
+          messageApi.success("Cập nhật nhóm tài khoản thành công!");
           setIsModalVisible(false);
         }
       });
@@ -86,7 +82,7 @@ const CreateOrEdit = ({
 
   return (
     <Modal
-      title="Tạo mới nhóm người dùng"
+      title="Tạo mới nhóm tài khoản"
       visible={isModalVisible}
       onCancel={handleCancel}
       footer={null}
@@ -95,9 +91,9 @@ const CreateOrEdit = ({
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             name="name"
-            label="Tên nhóm người dùng"
+            label="Tên nhóm tài khoản"
             rules={[
-              { required: true, message: "Vui lòng nhập tên nhóm người dùng!" },
+              { required: true, message: "Vui lòng nhập tên nhóm tài khoản!" },
             ]}
           >
             <Input size="large" />

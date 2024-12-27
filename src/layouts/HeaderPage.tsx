@@ -8,7 +8,6 @@ import logoPage from "../assets/image/logo_page.svg";
 import "./index.css";
 
 const { Header } = Layout;
-const { SubMenu } = Menu;
 
 const HeaderPage = () => {
   const menuItems = [
@@ -29,10 +28,12 @@ const HeaderPage = () => {
         {
           label: <Link to="/system-setting/user-group">Nhóm tài khoản</Link>,
           key: "user_group",
+          authorities: ["user_group_getList"],
         },
         {
-          label: "Tài khoản",
+          label: <Link to="/system-setting/user">Tài khoản</Link>,
           key: "user",
+          authorities: ["user_getList"],
         },
         {
           label: "Phân quyền",
