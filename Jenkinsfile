@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        RENDER_API_KEY = credentials('render-api-key') // Thêm Render API Key trong Jenkins
         RENDER_SERVICE_ID = 'rnd_vnwpzZ2Yx4E9uccKgewx9KP03zhd'   // Thay bằng Render Service ID
     }
 
@@ -10,7 +9,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Lấy mã nguồn từ GitHub
-                git branch: 'main', url: 'https://github.com/HaMinhLong/ReactJS_nha_thuoc_GPP'
+                git branch: 'main', url: 'https://github.com/HaMinhLong/ReactJS_nha_thuoc_GPP.git'
             }
         }
 
@@ -35,10 +34,13 @@ pipeline {
         stage('Deploy to Render') {
             steps {
                 script {
-                    // Sử dụng Render CLI để deploy
-                    sh """
-                    render deploy --service-id ${RENDER_SERVICE_ID} --api-key ${RENDER_API_KEY}
-                    """
+                    // Sử dụng withCredentials để truyền API Key an toàn vào môi trường
+                    withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
+                        // Deploy lên Render
+                        sh """
+                        render deploy --service-id ${RENDER_SERVICE_ID} --api-key ${RENDER_API_KEY}
+                        """
+                    }
                 }
             }
         }
