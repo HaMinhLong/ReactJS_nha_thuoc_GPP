@@ -11,7 +11,14 @@ const LoginPage = () => {
 
   const [login, { isLoading }] = usePostLoginMutation();
 
-  const onFinish = (values: any) => {
+  interface LoginFormValues {
+    username: string;
+    password: string;
+    remember: boolean;
+  }
+
+  const onFinish = (values: LoginFormValues) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     login(values).then((res: any) => {
       if (res?.error) {
         messageApi.error(res.error.data.error.message || "");

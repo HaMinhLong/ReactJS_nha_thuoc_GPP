@@ -26,7 +26,8 @@ const UpdatePermissionForm = () => {
     }
   }, [id]);
 
-  const transformData = (permissions: any) => {
+  const transformData = (permissions: { key: string; value: boolean }[]) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: any = {};
 
     permissions.forEach(({ key, value }: { key: string; value: boolean }) => {
@@ -40,7 +41,7 @@ const UpdatePermissionForm = () => {
     return Object.values(result) as PermissionType[];
   };
 
-  const handleFinish = (values: any) => {
+  const handleFinish = (values: { [key: string]: boolean }) => {
     const arrPermissions = handleConvertObjectToArray(values);
     const submitData: PermissionType[] = transformData(arrPermissions);
 

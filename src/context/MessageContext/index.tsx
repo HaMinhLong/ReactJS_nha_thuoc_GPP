@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from "react";
 import { message } from "antd";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MessageContext = createContext<any>(null); // Initialize the context with MessageInstance | null type
 
 export const MessageProvider = ({
