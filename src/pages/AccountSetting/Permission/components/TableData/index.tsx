@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Layout,
-  Input,
-  Table,
-  Button,
-  Dropdown,
-  Menu,
-  Spin,
-  Space,
-  Pagination,
-} from "antd";
-import { DownOutlined, PlusOutlined } from "@ant-design/icons";
+import { Layout, Table, Spin, Pagination } from "antd";
 import { useUrlSearchParams } from "use-url-search-params";
 
 import {

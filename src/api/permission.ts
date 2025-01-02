@@ -1,4 +1,3 @@
-import { message } from "antd";
 import { apiWrapper } from "@/store/apiWrapper";
 import { ErrorResponse } from "@/type/global";
 import { TypeUserGroup } from "./userGroup";

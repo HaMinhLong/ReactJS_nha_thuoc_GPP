@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Joyride, { Step } from "react-joyride";
 
 const UserGroupTutorial = () => {
-  const [run, setRun] = useState(true);
-
   const steps: Step[] = [
     {
       target: ".add-new-btn", // Chọn phần tử bằng class, id, hoặc selector
@@ -20,7 +18,7 @@ const UserGroupTutorial = () => {
     <div>
       <Joyride
         steps={steps}
-        run={run} // Bắt đầu chạy hướng dẫn
+        run={false} // Bắt đầu chạy hướng dẫn
         continuous={true} // Tự động chuyển sang bước tiếp theo
         showProgress={true} // Hiện số bước
         showSkipButton={true} // Nút bỏ qua
