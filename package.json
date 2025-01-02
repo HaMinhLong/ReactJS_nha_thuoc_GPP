@@ -20,6 +20,7 @@
     "react-joyride": "^2.9.3",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
+    "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
     "typescript": "^5.7.2",
     "use-url-search-params": "^2.5.1",
@@ -28,7 +29,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
