@@ -3,6 +3,7 @@ import { Layout, Typography } from "antd";
 
 import PageContainer from "@/layouts/PageContainer";
 import TableData from "./components/TableData";
+import UserGroupTutorial from "./components/UserGroupTutorial";
 
 const { Content } = Layout;
 
@@ -20,6 +21,8 @@ const UserGroupPage = () => {
           </Layout>
         </Content>
       </Layout>
+
+      <UserGroupTutorial />
     </PageContainer>
   );
 };

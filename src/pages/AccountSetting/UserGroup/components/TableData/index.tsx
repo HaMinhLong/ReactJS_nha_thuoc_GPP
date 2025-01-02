@@ -79,6 +79,7 @@ const TableData = () => {
             }}
           >
             <Input.Search
+              className="name-filter"
               placeholder="Tìm kiếm theo tên"
               allowClear
               style={{ width: "375px" }}
@@ -89,6 +90,7 @@ const TableData = () => {
             />
             <Space>
               <Button
+                className="add-new-btn"
                 type="primary"
                 icon={<PlusOutlined />}
                 style={{ backgroundColor: "#0dac50" }}
