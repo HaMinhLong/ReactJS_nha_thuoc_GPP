@@ -17,6 +17,12 @@ pipeline {
             }
         }
 
+        stage('Setup Environment') {
+            steps {
+                sh 'npm install -g vercel'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
@@ -39,7 +45,7 @@ pipeline {
             steps {
                 script {
                     // Deploy lên Vercel
-                    sh 'vercel --token $VERCEL_TOKEN --prod --confirm --project $VERCEL_PROJECT_ID'
+                    sh 'vercel --token **** --prod --yes'
                 }
             }
         }
