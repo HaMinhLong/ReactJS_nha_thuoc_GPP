@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         RENDER_API_KEY = credentials('render-api-key') // Thêm Render API Key trong Jenkins
-        RENDER_SERVICE_ID = 'your-render-service-id'   // Thay bằng Render Service ID
+        RENDER_SERVICE_ID = 'rnd_vnwpzZ2Yx4E9uccKgewx9KP03zhd'   // Thay bằng Render Service ID
     }
 
     stages {
         stage('Checkout Code') {
             steps {
                 // Lấy mã nguồn từ GitHub
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git branch: 'main', url: 'https://github.com/HaMinhLong/ReactJS_nha_thuoc_GPP'
             }
         }
 
