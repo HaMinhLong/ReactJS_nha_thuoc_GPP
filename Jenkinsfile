@@ -3,7 +3,6 @@ pipeline {
 
      environment {
         VERCEL_TOKEN = credentials('vercel-token') // Lưu token Vercel trong Jenkins Credentials
-        VERCEL_PROJECT_ID = 'prj_D4cq0iNPv1AWSxNkQMueCQNcAfjO' // ID của dự án trên Vercel
     }
 
     tools {
@@ -45,7 +44,7 @@ pipeline {
             steps {
                 script {
                     // Triển khai chỉ với thư mục build
-                    sh 'vercel --token $VERCEL_TOKEN --prod --yes ./build'
+                    sh 'vercel --token $VERCEL_TOKEN --prod --yes --name nha-thuoc-gpp ./build'
                 }
             }
         }
