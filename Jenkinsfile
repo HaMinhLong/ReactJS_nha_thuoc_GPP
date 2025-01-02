@@ -44,8 +44,8 @@ pipeline {
         stage('Deploy to Vercel') {
             steps {
                 script {
-                    // Deploy lên Vercel
-                    sh 'vercel --token **** --prod --yes'
+                    // Triển khai chỉ với thư mục build
+                    sh 'vercel --token $VERCEL_TOKEN --prod --yes ./build'
                 }
             }
         }
