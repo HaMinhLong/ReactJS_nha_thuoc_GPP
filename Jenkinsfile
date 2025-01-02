@@ -1,8 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        RENDER_SERVICE_ID = 'rnd_vnwpzZ2Yx4E9uccKgewx9KP03zhd'   // Thay bằng Render Service ID
+     environment {
+        VERCEL_TOKEN = credentials('vercel-token') // Lưu token Vercel trong Jenkins Credentials
+        VERCEL_PROJECT_ID = 'prj_D4cq0iNPv1AWSxNkQMueCQNcAfjO' // ID của dự án trên Vercel
     }
 
     tools {
