@@ -47,7 +47,7 @@ const CreateOrEdit = ({
 
   useEffect(() => {
     const dataDetail = data as GetDetailUserApiResponse;
-    if (!!data) {
+    if (dataDetail) {
       form.setFieldsValue({
         name: dataDetail?.data?.name || "",
         username: dataDetail?.data?.username || "",

@@ -38,7 +38,7 @@ const CreateOrEdit = ({
   }, [editId]);
 
   useEffect(() => {
-    if (!!data) {
+    if (data) {
       form.setFieldsValue({
         name: (data as GetDetailUserGroupApiResponse)?.data?.name || "",
       });
