@@ -104,7 +104,7 @@ const UpdatePermissionForm = () => {
                       }
                       valuePropName="checked"
                     >
-                      <Checkbox onChange={(e) => {}}>{item?.label}</Checkbox>
+                      <Checkbox>{item?.label}</Checkbox>
                     </Form.Item>
                   </div>
                 ))}
