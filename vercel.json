@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [{ "src": "src/**/*", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "/index.html" }],
+  "projectId": "prj_D4cq0iNPv1AWSxNkQMueCQNcAfjO",
+  "ignoreCommand": "gitignore"
+}
