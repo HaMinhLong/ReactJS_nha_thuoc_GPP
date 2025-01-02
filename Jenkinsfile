@@ -5,53 +5,42 @@ pipeline {
         RENDER_SERVICE_ID = 'rnd_vnwpzZ2Yx4E9uccKgewx9KP03zhd'   // Thay bằng Render Service ID
     }
 
+    tools {
+        nodejs 'NodeJS' // Đây là tên bạn đã cấu hình trong Global Tool Configuration
+    }
+
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                // Lấy mã nguồn từ GitHub
-                git branch: 'main', url: 'https://github.com/HaMinhLong/ReactJS_nha_thuoc_GPP.git'
+                git branch: 'main', url: 'https://github.com/HaMinhLong/ReactJS_nha_thuoc_GPP'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Cài đặt các package cần thiết
+                    // Cài đặt dependencies
                     sh 'npm install'
                 }
             }
         }
 
-        stage('Build App') {
+        stage('Build') {
             steps {
                 script {
-                    // Build ứng dụng ReactJS
+                    // Build ứng dụng React
                     sh 'npm run build'
                 }
             }
         }
 
-        stage('Deploy to Render') {
+        stage('Deploy to Vercel') {
             steps {
                 script {
-                    // Sử dụng withCredentials để truyền API Key an toàn vào môi trường
-                    withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
-                        // Deploy lên Render
-                        sh """
-                        render deploy --service-id ${RENDER_SERVICE_ID} --api-key ${RENDER_API_KEY}
-                        """
-                    }
+                    // Deploy lên Vercel
+                    sh 'vercel --token $VERCEL_TOKEN --prod --confirm --project $VERCEL_PROJECT_ID'
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build and Deployment Successful!'
-        }
-        failure {
-            echo 'Build or Deployment Failed!'
         }
     }
 }

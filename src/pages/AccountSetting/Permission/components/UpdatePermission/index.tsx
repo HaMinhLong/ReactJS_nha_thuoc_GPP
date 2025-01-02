@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Spin, Typography } from "antd";
+import { Layout, Typography } from "antd";
 
 import PageContainer from "@/layouts/PageContainer";
 import UpdatePermissionForm from "./UpdatePermissionForm";

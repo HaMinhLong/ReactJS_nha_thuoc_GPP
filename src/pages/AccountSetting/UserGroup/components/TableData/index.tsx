@@ -19,7 +19,6 @@ import {
 } from "../../../../../api/userGroup";
 import { useColumnTable } from "./columnTable";
 import CreateOrEdit from "../CreateOrEdit";
-import FilterData from "../FilterData";
 
 const { Content } = Layout;
 
