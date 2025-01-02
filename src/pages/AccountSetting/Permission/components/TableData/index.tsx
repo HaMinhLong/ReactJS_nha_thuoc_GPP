@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Layout, Table, Spin, Pagination } from "antd";
 import { useUrlSearchParams } from "use-url-search-params";
 
@@ -14,9 +14,6 @@ const TableData = () => {
   const [parameter, setParameter] = useUrlSearchParams({ page: 1, limit: 10 });
   const [getList, { data, isFetching }] = useLazyGetListUserGroupQuery();
 
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [editId, setEditId] = useState<number>(0);
-
   useEffect(() => {
     getList({
       page: Number(parameter.page),
@@ -24,15 +21,9 @@ const TableData = () => {
     });
   }, []);
 
-  const handleCreateNew = () => {
-    setIsModalVisible(true);
-    setEditId(0);
-  };
-
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "F2") {
       event.preventDefault();
-      handleCreateNew();
     }
   };
 

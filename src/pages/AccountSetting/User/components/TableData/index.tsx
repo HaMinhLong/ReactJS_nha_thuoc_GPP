@@ -41,7 +41,7 @@ const TableData = () => {
     setEditId(0);
   };
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "F2") {
       event.preventDefault();
       handleCreateNew();
@@ -59,6 +59,7 @@ const TableData = () => {
     setParameter?.({ ...parameter, page: page, limit: pageSize });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const columns: any = useColumnTable({
     getList,
     setIsModalVisible,

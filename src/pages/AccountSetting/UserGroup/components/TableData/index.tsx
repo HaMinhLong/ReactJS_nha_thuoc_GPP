@@ -41,7 +41,7 @@ const TableData = () => {
     setEditId(0);
   };
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "F2") {
       event.preventDefault();
       handleCreateNew();

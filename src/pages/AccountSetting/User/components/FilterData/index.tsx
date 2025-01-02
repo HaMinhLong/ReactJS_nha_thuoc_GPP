@@ -17,6 +17,7 @@ const FilterData = () => {
 
   const { data } = useGetListUserGroupQuery({ selectFields: ["id", "name"] });
 
+  // eslint-disable-next-line no-unused-vars
   const getItems: (panelStyle: CSSProperties) => CollapseProps["items"] = (
     panelStyle
   ) => [

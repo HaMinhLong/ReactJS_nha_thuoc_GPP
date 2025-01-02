@@ -9,6 +9,7 @@ const { Content } = Layout;
 
 interface UserContextType {
   parameter?: InitialType;
+  // eslint-disable-next-line no-unused-vars
   setParameter?: (nextQuery: InitialType) => void;
 }
 

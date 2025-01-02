@@ -8,6 +8,7 @@ const { Sider } = Layout;
 const { Option } = Select;
 
 const FilterData = () => {
+  // eslint-disable-next-line no-unused-vars
   const getItems: (panelStyle: CSSProperties) => CollapseProps["items"] = (
     panelStyle
   ) => [

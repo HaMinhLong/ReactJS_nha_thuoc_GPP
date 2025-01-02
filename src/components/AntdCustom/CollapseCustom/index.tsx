@@ -5,6 +5,7 @@ import { Collapse, theme } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 interface PropsType {
+  // eslint-disable-next-line no-unused-vars
   getItems: (panelStyle: CSSProperties) => CollapseProps["items"];
 }
 
