@@ -13,7 +13,7 @@ const PageContainer = ({ children }: PropsType) => {
     <div>
       <Layout className="layout">
         <Content>
-          <div className="fixed top-0 left-0 right-0 z-10">
+          <div className="fixed top-0 left-0 right-0 z-[1000]">
             <HeaderPage />
           </div>
           <div className="h-[100px]"></div>

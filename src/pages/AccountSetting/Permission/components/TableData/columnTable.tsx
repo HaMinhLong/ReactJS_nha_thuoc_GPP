@@ -23,7 +23,7 @@ export const useColumnTable = () => {
       render: (record: TypeUserGroup) => {
         return (
           <div className="flex gap-x-2">
-            <Link to={`/system-setting/permission/${record?.id}`}>
+            <Link to={`/account-setting/permission/${record?.id}`}>
               <Button color="primary" variant="outlined">
                 Phân quyền
               </Button>

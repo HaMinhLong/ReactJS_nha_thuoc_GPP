@@ -1,16 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./components/AuthProvider";
-import { MessageProvider } from "./context/MessageContext";
-import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "@/components/PrivateRoute";
+import { AuthProvider } from "@/components/AuthProvider";
+import { MessageProvider } from "@/context/MessageContext";
+import PublicRoute from "@/components/PublicRoute";
 
 import HomePage from "@/pages/HomePage";
-import UserGroupPage from "@/pages/SystemSetting/UserGroup";
-import UserPage from "@/pages/SystemSetting/User";
-import PermissionPage from "@/pages/SystemSetting/Permission";
-import UpdatePermission from "@/pages/SystemSetting/Permission/components/UpdatePermission";
+import UserGroupPage from "@/pages/AccountSetting/UserGroup";
+import UserPage from "@/pages/AccountSetting/User";
+import PermissionPage from "@/pages/AccountSetting/Permission";
+import UpdatePermission from "@/pages/AccountSetting/Permission/components/UpdatePermission";
+
+import CabinetPage from "@/pages/SystemSetting/Cabinet";
 
 import LoginPage from "@/pages/LoginPage";
 
@@ -31,26 +33,30 @@ const App = () => {
             {/* User Group Routes */}
             <Route element={<PrivateRoute />}>
               <Route
-                path="/system-setting/user-group"
+                path="/account-setting/user-group"
                 element={<UserGroupPage />}
               />
             </Route>
             {/* User Routes */}
             <Route element={<PrivateRoute />}>
-              <Route path="/system-setting/user" element={<UserPage />} />
+              <Route path="/account-setting/user" element={<UserPage />} />
             </Route>
             {/* Permission Routes */}
             <Route element={<PrivateRoute />}>
               <Route
-                path="/system-setting/permission"
+                path="/account-setting/permission"
                 element={<PermissionPage />}
               />
             </Route>
             <Route element={<PrivateRoute />}>
               <Route
-                path="/system-setting/permission/:id"
+                path="/account-setting/permission/:id"
                 element={<UpdatePermission />}
               />
+            </Route>
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/system-setting/cabinet" element={<CabinetPage />} />
             </Route>
 
             {/* Catch-all route */}
