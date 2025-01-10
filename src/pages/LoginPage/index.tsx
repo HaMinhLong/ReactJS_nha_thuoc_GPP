@@ -36,7 +36,6 @@ const LoginPage = () => {
   return (
     <Row justify="center" align="middle" style={{ height: "100vh" }}>
       <Col span={6}>
-        {" "}
         <Typography.Title level={3} className="text-semibold text-center">
           Login
         </Typography.Title>
