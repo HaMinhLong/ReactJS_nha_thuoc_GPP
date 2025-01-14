@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LoginApiResponse } from "../../api/auth";
 
-const initialState: LoginApiResponse["data"] = {};
+export type AuthState = LoginApiResponse["data"];
+
+const initialState: AuthState = {};
 
 const authSlice = createSlice({
   name: "auth",
@@ -16,8 +18,12 @@ const authSlice = createSlice({
     updateUserProfile: (state, action) => {
       state.user = action.payload;
     },
+    updatePermission: (state, action) => {
+      state.permission = action.payload;
+    },
   },
 });
-export const { updateAccessToken, updateUserProfile } = authSlice.actions;
+export const { updateAccessToken, updateUserProfile, updatePermission } =
+  authSlice.actions;
 
 export default authSlice.reducer;

@@ -68,21 +68,21 @@ const axiosBaseQuery =
       };
     }
   };
-export const apiWrapper = createApi({
-  baseQuery: axiosBaseQuery({
-    baseUrl:
-      process.env.REACT_APP_BASE_API_URL || "http://localhost:8000/api/v1",
-  }),
-
-  tagTypes: ["user", "user-group", "permission", "cabinet"],
-  endpoints: () => ({}),
-});
-
 // export const apiWrapper = createApi({
 //   baseQuery: axiosBaseQuery({
-//     baseUrl: "http://localhost:8000/api/v1",
+//     baseUrl:
+//       process.env.REACT_APP_BASE_API_URL || "http://localhost:8000/api/v1",
 //   }),
 
 //   tagTypes: ["user", "user-group", "permission", "cabinet"],
 //   endpoints: () => ({}),
 // });
+
+export const apiWrapper = createApi({
+  baseQuery: axiosBaseQuery({
+    baseUrl: "http://localhost:8000/api/v1",
+  }),
+
+  tagTypes: ["user", "user-group", "permission", "cabinet"],
+  endpoints: () => ({}),
+});

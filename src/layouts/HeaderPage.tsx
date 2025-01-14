@@ -6,6 +6,10 @@ import {
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+
+import { AuthState } from "@/features/auth/auth.slice";
+import { filterMenuByAuthorities } from "@/utils";
 
 import logoPage from "../assets/image/logo_page.svg";
 
@@ -14,6 +18,9 @@ import "./index.css";
 const { Header } = Layout;
 
 const HeaderPage = () => {
+  const { auth } = useSelector((state: { auth: AuthState }) => state);
+  const permissions = auth.permission || [];
+
   const menuItems = [
     {
       key: "dashboard",
@@ -28,6 +35,7 @@ const HeaderPage = () => {
       label: "Cài đặt tài khoản",
       key: "account_setting",
       icon: <SettingOutlined />,
+      authorities: ["user_group_getList", "user_getList"],
       children: [
         {
           label: <Link to="/account-setting/user-group">Nhóm tài khoản</Link>,
@@ -49,11 +57,12 @@ const HeaderPage = () => {
       label: "Cài đặt hệ thống",
       key: "system_setting",
       icon: <SettingOutlined />,
+      authorities: ["cabinet_getList"],
       children: [
         {
           label: <Link to="/system-setting/cabinet">Tủ/Ngăn tủ</Link>,
           key: "user_group",
-          authorities: ["user_group_getList"],
+          authorities: ["cabinet_getList"],
         },
       ],
     },
@@ -77,6 +86,8 @@ const HeaderPage = () => {
     },
   ];
 
+  const filteredMenu = filterMenuByAuthorities(menuItems, permissions);
+
   return (
     <div>
       <div className="h-[50px] px-10 flex items-center justify-between bg-[#fff]">
@@ -95,7 +106,7 @@ const HeaderPage = () => {
       </div>
 
       <Header style={{ display: "flex", alignItems: "center", height: 50 }}>
-        <Menu mode="horizontal" items={menuItems} style={{ height: 50 }} />
+        <Menu mode="horizontal" items={filteredMenu} style={{ height: 50 }} />
       </Header>
     </div>
   );

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import PrivateRoute from "@/components/PrivateRoute";
 import { AuthProvider } from "@/components/AuthProvider";
@@ -15,8 +16,31 @@ import UpdatePermission from "@/pages/AccountSetting/Permission/components/Updat
 import CabinetPage from "@/pages/SystemSetting/Cabinet";
 
 import LoginPage from "@/pages/LoginPage";
+import { useLazyGetMeQuery } from "./api/auth";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const [getMe] = useLazyGetMeQuery();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getMe();
+
+      const permission = res?.data?.data?.permission || [];
+      const user = res?.data?.data?.user || {};
+
+      dispatch({
+        type: "auth/updatePermission",
+        payload: permission,
+      });
+      dispatch({
+        type: "auth/updateUserProfile",
+        payload: user,
+      });
+    };
+    fetchData();
+  }, []);
+
   return (
     <AuthProvider>
       <MessageProvider>
