@@ -74,15 +74,15 @@ const axiosBaseQuery =
 //       process.env.REACT_APP_BASE_API_URL || "http://localhost:8000/api/v1",
 //   }),
 
-//   tagTypes: ["user", "user-group", "permission", "cabinet"],
+//   tagTypes: ["user", "user-group", "permission", "cabinet", "product-type"],
 //   endpoints: () => ({}),
 // });
 
 export const apiWrapper = createApi({
   baseQuery: axiosBaseQuery({
-    baseUrl: "http://localhost:8000/api/v1",
+    baseUrl: "http://localhost:8100/api/v1",
   }),
 
-  tagTypes: ["user", "user-group", "permission", "cabinet"],
+  tagTypes: ["user", "user-group", "permission", "cabinet", "product-type"],
   endpoints: () => ({}),
 });

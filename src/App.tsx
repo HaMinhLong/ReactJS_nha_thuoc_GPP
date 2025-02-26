@@ -14,6 +14,7 @@ import PermissionPage from "@/pages/AccountSetting/Permission";
 import UpdatePermission from "@/pages/AccountSetting/Permission/components/UpdatePermission";
 
 import CabinetPage from "@/pages/SystemSetting/Cabinet";
+import ProductType from "@/pages/SystemSetting/ProductType";
 
 import LoginPage from "@/pages/LoginPage";
 import { useLazyGetMeQuery } from "./api/auth";
@@ -81,6 +82,13 @@ const App = () => {
 
             <Route element={<PrivateRoute />}>
               <Route path="/system-setting/cabinet" element={<CabinetPage />} />
+            </Route>
+
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="/system-setting/product-type"
+                element={<ProductType />}
+              />
             </Route>
 
             {/* Catch-all route */}

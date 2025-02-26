@@ -61,8 +61,13 @@ const HeaderPage = () => {
       children: [
         {
           label: <Link to="/system-setting/cabinet">Tủ/Ngăn tủ</Link>,
-          key: "user_group",
+          key: "cabinet",
           authorities: ["cabinet_getList"],
+        },
+        {
+          label: <Link to="/system-setting/product-type">Loại sản phẩm</Link>,
+          key: "product_type",
+          authorities: ["product_type_getList"],
         },
       ],
     },
