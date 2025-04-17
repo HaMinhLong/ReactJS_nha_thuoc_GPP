@@ -12,8 +12,6 @@ import UserPage from "@/pages/AccountSetting/User";
 import PermissionPage from "@/pages/AccountSetting/Permission";
 import UpdatePermission from "@/pages/AccountSetting/Permission/components/UpdatePermission";
 
-import CabinetPage from "@/pages/SystemSetting/Cabinet";
-
 import LoginPage from "@/pages/LoginPage";
 
 const App = () => {
@@ -53,10 +51,6 @@ const App = () => {
                 path="/account-setting/permission/:id"
                 element={<UpdatePermission />}
               />
-            </Route>
-
-            <Route element={<PrivateRoute />}>
-              <Route path="/system-setting/cabinet" element={<CabinetPage />} />
             </Route>
 
             {/* Catch-all route */}

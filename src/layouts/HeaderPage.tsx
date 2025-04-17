@@ -1,11 +1,12 @@
 import React from "react";
 import { Avatar, Dropdown, Layout, Menu, MenuProps, Space } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   LogoutOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useAuth } from "../components/AuthProvider";
 
 import logoPage from "../assets/image/logo_page.svg";
 
@@ -14,15 +15,14 @@ import "./index.css";
 const { Header } = Layout;
 
 const HeaderPage = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
+
   const menuItems = [
     {
       key: "dashboard",
       label: <Link to="/">Tổng quan</Link>,
       icon: <SettingOutlined />,
-    },
-    {
-      key: "thuoc",
-      label: <Link to="/">Đơn thuốc</Link>,
     },
     {
       label: "Cài đặt tài khoản",
@@ -45,26 +45,16 @@ const HeaderPage = () => {
         },
       ],
     },
-    {
-      label: "Cài đặt hệ thống",
-      key: "system_setting",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          label: <Link to="/system-setting/cabinet">Tủ/Ngăn tủ</Link>,
-          key: "user_group",
-          authorities: ["user_group_getList"],
-        },
-      ],
-    },
   ];
 
+  const handleMenuClick = (e: { key: string }) => {
+    if (e.key === "3") {
+      auth?.logout();
+      navigate("/login");
+    }
+  };
+
   const items: MenuProps["items"] = [
-    {
-      label: "Cài đặt doanh nghiệp",
-      key: "1",
-      icon: <SettingOutlined />,
-    },
     {
       label: "Cài đặt tài khoản",
       key: "2",
@@ -81,11 +71,15 @@ const HeaderPage = () => {
     <div>
       <div className="h-[50px] px-10 flex items-center justify-between bg-[#fff]">
         <Link to="/">
-          <img width="150" height="50" className="logo" src={logoPage} alt="" />
+          {/* <img width="150" height="50" className="logo" src={logoPage} alt="" /> */}
+          Logo
         </Link>
 
         <div className="flex flex-end p-[10px] z-[1001] cursor-pointer">
-          <Dropdown menu={{ items }} placement="bottom">
+          <Dropdown
+            menu={{ items, onClick: handleMenuClick }}
+            placement="bottom"
+          >
             <Space>
               <Avatar icon={<UserOutlined />} />
               <span style={{ cursor: "pointer" }}>Vũ Hưng</span>
